@@ -1,0 +1,5 @@
+pip install PyQt5 mysql-connector-python PyMySQL
+sudo apt install pyqt5-dev-tools pyqt5-dev
+
+# переконвертировать с .ui в .py
+pyuic5 ./forms/login_form.ui -o login_form.py

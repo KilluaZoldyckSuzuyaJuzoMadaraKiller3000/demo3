@@ -10,9 +10,9 @@ class Database:
         try:
             self.connection = pymysql.connect(
                 host='localhost',
-                user='phpmyadmin',
-                password='phpmyadmin',
-                database='dem_DB',
+                user='root',
+                password='',
+                database='demoDB',
                 charset='utf8mb4',
                 cursorclass=pymysql.cursors.DictCursor
             )

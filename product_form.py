@@ -9,7 +9,7 @@ class ProductCard(QFrame):
     # Карточка товара
 
     def __init__(self, product_data):
-        super().__init()
+        super().__init__()
         self.product = product_data
         self.setup_ui()
 
@@ -36,8 +36,8 @@ class ProductCard(QFrame):
         discount = float(self.product['current_discount'])
 
         # Категория и название
-        title_label = QLabel(f'{self.product['category']} | {self.product['product']}')
-        title_label.setFont(QFont(pointSize=12, weight=QFont.Bold))
+        title_label = QLabel(f"{self.product['category']} | {self.product['product_name']}")
+        # title_label.setFont(QFont(pointSize=12, weight=QFont.Bold))
         info_layout.addWidget(title_label)
 
         # Описание
@@ -55,11 +55,11 @@ class ProductCard(QFrame):
 
             new_price = price * (1 - discount / 100)
             new_price_label = QLabel(f"{new_price:.2f} Р.")
-            new_price_label.setFont(QFont(pointSize=11, weight=QFont.Bold))
+            # new_price_label.setFont(QFont(pointSize=11, weight=QFont.Bold))
             info_layout.addWidget(new_price_label)
         else:
             price_label = QLabel(f'{price:.2f} Р.')
-            price_label.setFont(QFont(pointSize=11))
+            # price_label.setFont(QFont(pointSize=11))
             info_layout.addWidget(price_label)
 
         # Единица измерения и количество
@@ -80,12 +80,12 @@ class ProductCard(QFrame):
         discount_layout.setAlignment(Qt.AlignCenter)
         
         discount_title = QLabel("Действующая\nскидка")
-        discount_title.setFont(QFont(pointSize=9, weight=QFont.Bold))
+        # discount_title.setFont(QFont(pointSize=9, weight=QFont.Bold))
         discount_title.setAlignment(Qt.AlignCenter)
         discount_layout.addWidget(discount_title)
 
         discount_value = QLabel(f'{discount}%')
-        discount_value.setFont(QFont(pointSize=14, weight=QFont.Bold))
+        # discount_value.setFont(QFont(pointSize=14, weight=QFont.Bold))
         discount_value.setAlignment(Qt.AlignCenter)
         discount_layout.addWidget(discount_value)
 
@@ -141,24 +141,25 @@ class ProductForm(QMainWindow, Ui_ProductWindow):
 
     def load_products(self):
         # Загрузка товаров из базы данных
-        try:
-            with self.database.connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM tovar ORDER BY product_name") 
-                products = cursor.fetchall()
+        # try:
+        with self.database.connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM tovar ORDER BY product_name") 
+            products = cursor.fetchall()
 
-            # Очищаем контейнер
-            while self.products_layout.count():
-                item = self.products_layout.takeAt(0)
-                if item.widget():
-                    item.widget().deleteLater()
-            
-            # Добавляем карточки товаров
-            for product in products:
-                card = ProductCard(product)
-                self.products_layout.addWidget(card)
+        # Очищаем контейнер
+        while self.products_layout.count():
+            item = self.products_layout.takeAt(0)
+            if item.widget():
+                item.widget().deleteLater()
         
-        except Exception as e:
-            pass
+        # Добавляем карточки товаров
+        for product in products:
+            print(product)
+            card = ProductCard(product)
+            self.products_layout.addWidget(card)
+        
+        # except Exception as e:
+        #     print(e)
     
     def on_logout(self):
         # Выход из аккаунта

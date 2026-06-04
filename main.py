@@ -28,6 +28,7 @@ class LoginForm(QMainWindow, Ui_MainWindow):
         user = self.db.get_user(login, password)
         if user:
             print(f"Успешный вход: {user['full_name']} ({user['role']})")
+            self.open_product_form(user)
         else:
             print(f'Неверный логин или пароль')
 

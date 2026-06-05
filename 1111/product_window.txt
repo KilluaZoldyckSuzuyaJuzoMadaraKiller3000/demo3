@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
 
 
 class Ui_ProductWindow(object):
@@ -62,17 +61,6 @@ class Ui_ProductWindow(object):
         self.products_container.setGeometry(QtCore.QRect(0, 0, 878, 518))
         self.products_container.setObjectName("products_container")
         self.scroll_area.setWidget(self.products_container)
-        self.filter_label = QtWidgets.QLabel(self.centralwidget)
-        self.filter_label.setGeometry(QtCore.QRect(550, 100, 90, 25))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.filter_label.setFont(font)
-        # self.filter_label.setAlignment(QtCore.Qt.Qt::AlignmentFlag::AlignLeading|QtCore.Qt.Qt::AlignmentFlag::AlignLeft|QtCore.Qt.Qt::AlignmentFlag::AlignVCenter)
-        self.filter_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-        self.filter_label.setObjectName("filter_label")
-        self.supplier_combo = QtWidgets.QComboBox(self.centralwidget)
-        self.supplier_combo.setGeometry(QtCore.QRect(630, 100, 150, 25))
-        self.supplier_combo.setObjectName("supplier_combo")
         ProductWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(ProductWindow)
@@ -93,4 +81,3 @@ class Ui_ProductWindow(object):
         self.sort_combo.setItemText(2, _translate("ProductWindow", "По цене (убыв)"))
         self.sort_combo.setItemText(3, _translate("ProductWindow", "По количеству"))
         self.sort_combo.setItemText(4, _translate("ProductWindow", "По скидке"))
-        self.filter_label.setText(_translate("ProductWindow", "Поставщик:"))
